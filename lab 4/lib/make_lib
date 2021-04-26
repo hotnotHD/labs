@@ -1,0 +1,11 @@
+CC=riscv64-unknown-elf-gcc
+AR=riscv64-unknown-elf-ar
+CFLAGS=-march=rv64iac -mabi=lp64
+
+all: lib
+
+lib: statistics.o
+		$(AR) -rsc libStatistics.a statistics.o
+		del -f *.o
+statistics.o: statistics.c
+		$(CC) $(CFLAGS) -c statistics.c -o statistics.o
